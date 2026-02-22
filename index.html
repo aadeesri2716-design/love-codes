@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Love Codes 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center/cover;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+    .screen {
+      display: none;
+      min-height: 100vh;
+      padding: 40px 20px;
+      backdrop-filter: blur(2px);
+    }
+    .active {
+      display: block;
+    }
+    button {
+      padding: 15px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      background: #ff4d6d;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .option {
+      display: block;
+      margin: 12px auto;
+      padding: 12px;
+      width: 90%;
+      max-width: 400px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .emoji {
+      font-size: 60px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="start" class="screen active">
+  <h1>💖 Love Codes 💖</h1>
+  <p>This is our love codes. Kiss it properly ❤️</p>
+  <button onclick="startTest()">Start to dive inside Subasri's Heart</button>
+</div>
+
+<div id="quiz" class="screen">
+  <h2 id="question"></h2>
+  <div id="options"></div>
+  <div id="reaction"></div>
+</div>
+
+<div id="end" class="screen">
+  <h1>Happy Love Anniversary ❤️</h1>
+  <p>
+    Successfully you did swimming inside Subasri's Heart 🌊💖<br>
+    Congratulations, you finally reached deep inside ❤️<br><br>
+    Will you be my Valentine?
+  </p>
+</div>
+
+<script>
+const questions = [
+  {
+    q: "When did I first propose you?",
+    a: "13th March 2025",
+    o: ["13th March 2025", "14th Feb 2025", "1st Jan 2025", "10th April 2025"]
+  },
+  {
+    q: "What is going to be our first honeymoon destination?",
+    a: "Calilo and Mykonos, Greece",
+    o: ["Paris & Rome", "Calilo and Mykonos, Greece", "Bali", "Maldives"]
+  },
+  {
+    q: "When are we going to get married?",
+    a: "January, 2027",
+    o: ["December 2026", "January, 2027", "March 2027", "February 2028"]
+  },
+  {
+    q: "I am loving you more than anyone else in the world. Because I have only you.",
+    a: "Yes, true, because I am living in your heart",
+    o: [
+      "Yes, true, because I am living in your heart",
+      "Maybe",
+      "I am not sure",
+      "No"
+    ]
+  },
+  {
+    q: "Which is my favourite food?",
+    a: "Pizza",
+    o: ["Burger", "Biryani", "Pizza", "Pasta"]
+  },
+  {
+    q: "In the world who I love most, more than my soul?",
+    a: "My amul baby - CA CPA Aditya Iyer",
+    o: [
+      "My amul baby - CA CPA Aditya Iyer",
+      "Friends",
+      "Family",
+      "Everyone"
+    ]
+  },
+  {
+    q: "What is the one thing I don't like in our conversation?",
+    a: "Timewaste, timepass, you are giving stress",
+    o: [
+      "Silence",
+      "Timewaste, timepass, you are giving stress",
+      "Late replies",
+      "Short messages"
+    ]
+  },
+  {
+    q: "Do you think I will take care of you properly in future?",
+    a: "Yes, definitely yes",
+    o: ["Maybe", "Not sure", "Yes, definitely yes", "No"]
+  },
+  {
+    q: "Will you marry me?",
+    a: "Yes. I will marry one and only you.",
+    o: [
+      "Yes. I will marry one and only you.",
+      "No",
+      "Let's see",
+      "Maybe later"
+    ]
+  },
+  {
+    q: "I am your cute papa right? Will you forgive me for my past actions?",
+    a: "It's ok papa. You have full rights on me.",
+    o: [
+      "It's ok papa. You have full rights on me.",
+      "No",
+      "I need time",
+      "Never"
+    ]
+  }
+];
+
+let i = 0;
+
+function startTest() {
+  document.getElementById('start').classList.remove('active');
+  document.getElementById('quiz').classList.add('active');
+  loadQ();
+}
+
+function loadQ() {
+  const q = questions[i];
+  document.getElementById('question').innerText = q.q;
+  const opt = document.getElementById('options');
+  opt.innerHTML = "";
+  document.getElementById('reaction').innerHTML = "";
+  q.o.forEach(x => {
+    const d = document.createElement('div');
+    d.className = "option";
+    d.innerText = x;
+    d.onclick = () => check(x);
+    opt.appendChild(d);
+  });
+}
+
+function check(ans) {
+  const r = document.getElementById('reaction');
+  if (ans === questions[i].a) {
+    r.innerHTML = "💖<br>Great! Properly you are swimming inside Subasri's heart 💕";
+    setTimeout(() => {
+      i++;
+      i < questions.length ? loadQ() : end();
+    }, 3000);
+  } else {
+    r.innerHTML = "😠<br>I will eat you after the test. Be ready with my SB!";
+    setTimeout(() => r.innerHTML = "", 3000);
+  }
+}
+
+function end() {
+  document.getElementById('quiz').classList.remove('active');
+  document.getElementById('end').classList.add('active');
+}
+</script>
+
+</body>
+</html>
